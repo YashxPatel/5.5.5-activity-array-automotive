@@ -85,6 +85,70 @@ class Vehicle {
     }
 }
 
+class Car extends Vehicle {
+    constructor(make, model, year, color, mileage) {
+        super(make, model, year, color, mileage);
+        this.maxPassengers = 5;
+        this.passenger = 0;
+        this.numberOfWheels = 4;
+        this.maxSpeed = 160;
+        this.fuel = 10;
+        this.scheduleService = false;
+    }
+
+
+    loadPassenger(num) {
+        if (this.passenger < this.maxPassengers) {
+            if ((num + this.passenger) <= this.maxPassengers) {
+                this.passenger = num;
+                return this.passenger;               
+            } else {
+                console.log(this.model + " " + this.make + " not have enough space to take all passengers.");
+
+            }
+        } else {
+            console.log(this.model + " " + this.make + " is full");
+        }
+    }
+
+    start() {
+        if (this.fuel > 0) {            
+            console.log("engine has started.");
+            return this.started = true
+        } else {
+            console.log("no fuel");
+            return this.started = false;
+        }
+    }
+
+    checkService(mileage) {
+        if (this.mileage > 30000) {            
+            this.scheduleService = true
+            return this.scheduleService;                       
+        }
+    }
+
+
+}
+
+
+let myCar = new Car('mercury', 'sedan', '2007', 'red', 50000)
+
+
+console.log(myCar.loadPassenger(5))
+console.log(myCar.checkService())
+myCar.start()
+myCar.stop()
+console.log(myCar.fuel)
+myCar.start()
+myCar.accelerate()
+console.log(myCar.fuel)
+
+
+console.log(myCar)
+
+
+
 //This exports things you want to use from this "module", more info in readme
 module.exports = {
     Vehicle
